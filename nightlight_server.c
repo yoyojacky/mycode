@@ -6,14 +6,13 @@
 #include <netinet/in.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include <wiringPi.h>
 
 
 #define SOCKET_PORT 12580
 #define MAX_CONN 5
-
-int fd;
 
 int main()
 {
@@ -43,7 +42,7 @@ int main()
 	//客户端套接字4
 	char buffer[1024];
 	struct sockaddr_in c_addr;
-	socklen_t length = sizeof(c_addr); 
+	socklen_t length; 
         //成功返回非负描述字， 出错返回-1
 	int conn = accept(s_fd, (struct sockaddr *)&c_addr, &length);
 	if(conn<0)
@@ -52,16 +51,33 @@ int main()
 		exit(1);
 	}
 
+		memset(buffer,0, sizeof(buffer));
+
 	for(;;)
 	{
-		memset(buffer,0, sizeof(buffer));
+		while(conn <= 0){
+			sleep(1);
+		}
+
 		int len = recv(conn, buffer, sizeof(buffer),0);
-		for(int i=0; i<25; i++)
+
+		       clock_t start, finish;  
+		         double  duration;  
+			          start = clock();  
+
+
+		for(int i=1; i<25; i++)
 		{
-			printf("index %d = value %x \n", i,buffer[i]);
-			wiringPiI2CWriteReg16(fd,i,buffer[i]);
+			wiringPiI2CWriteReg8(fd,i,buffer[i]);
 		}
 		printf("-------------------");
+
+ finish = clock();  
+        duration = (double)(finish - start) / CLOCKS_PER_SEC;
+printf("%f \n",duration);
+
 		fflush(stdout);
+		if(len <= 0) conn = accept(s_fd, (struct sockaddr *)&c_addr, &length);
 	}
+	
 }
