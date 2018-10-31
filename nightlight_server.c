@@ -61,9 +61,9 @@ int main()
 
 		int len = recv(conn, buffer, sizeof(buffer),0);
 
-		       clock_t start, finish;  
-		         double  duration;  
-			          start = clock();  
+	        clock_t start, finish;  
+	        double  duration;  
+	        start = clock();  
 
 
 		for(int i=1; i<25; i++)
@@ -72,9 +72,9 @@ int main()
 		}
 		printf("-------------------");
 
- finish = clock();  
-        duration = (double)(finish - start) / CLOCKS_PER_SEC;
-printf("%f \n",duration);
+	        finish = clock();  
+        	duration = (double)(finish - start) / CLOCKS_PER_SEC;
+		printf("%f \n",duration);
 
 		fflush(stdout);
 		if(len <= 0) conn = accept(s_fd, (struct sockaddr *)&c_addr, &length);
