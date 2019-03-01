@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""first please add python libarary via this command: python -m easy_install --user https://github.com/pl31/python-liquidcrystal_i2c/archive/master.zip """
 import socket
 import os.path
 import sys
