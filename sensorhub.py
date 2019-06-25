@@ -4,6 +4,7 @@ import smbus
 
 DEVICE_BUS = 1
 DEVICE_ADDR = 0x17
+SENSOR_HAT_ADDR = 
 
 TEMP_REG = 0x01
 LIGHT_REG_L = 0x02
