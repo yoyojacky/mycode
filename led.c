@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <wiringPi.h>
-
+/* 这是一个根据温度点灯的例子， 当温度达到50度时点亮一个灯，低于50度时熄灭这个灯 */
 
 int main(void)
 {
