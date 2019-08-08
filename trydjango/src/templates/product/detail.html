@@ -1,0 +1,16 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<h1> 产品列表: </h1>
+<h2> {{object.storageTime}}</h2>
+<h2> {% if object.productSKU %}{{object.productSKU}}{% else %}SKU没有设置{% endif %}</h2>
+<h2> {% if object.productName %}{{object.productName}}{% else %}产品名称没有设置{% endif %}</h2>
+<h2> {% if object.price %}{{ object.price }}{% else %}价格没有设定{% endif %}</h2>
+<h2> {% if object.weight %}{{ object.weight }}{% else %}重量没有设置{% endif %}</h2>
+<h2> {% if object.storageQuantity%}{{object.storageQuantity}}{% else %}入库数量没有设置{% endif %}</h2>
+<h2> {% if object.selloutQuantity%}{{object.selloutQuantity}}{% else %}出库数量没有设置{% endif %}</h2>
+<h2> {% if object.remainQuantity%}{{object.remainQuantity}}{% else %}库存数量没有设置{% endif %}</h2>
+<h2> {% if object.onlineStatus%}{{object.onlineStatus}}{% else %}产品没有上线{% endif %}</h2>
+
+{% endblock %}
+
