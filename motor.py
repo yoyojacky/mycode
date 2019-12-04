@@ -1,0 +1,35 @@
+import smbus
+import sys
+import time
+
+MOTOR_DRIVER_ADDRESS = 0x18
+MOTOR_DRIVER_BUS = 1
+MOTOR_DRIVER_SPEED_A_L = 0x01
+MOTOR_DRIVER_SPEED_A_H = 0x02
+MOTOR_DRIVER_ENABLE = 0x13
+
+bus = smbus.SMBus(MOTOR_DRIVER_BUS)
+
+print("Please set the value range from 100 to 1300")
+MOTOR_DRIVER_SPEED_SET_A = (int)(input("Set the speed of MOTOR_DRIVER_A:"))
+while(MOTOR_DRIVER_SPEED_SET_A < 1300):
+	MOTOR_DRIVER_SPEED_SET_A += 1
+	time.sleep(0.01)
+	bus.write_byte_data(MOTOR_DRIVER_ADDRESS,MOTOR_DRIVER_SPEED_A_H,(MOTOR_DRIVER_SPEED_SET_A >> 8))  
+	bus.write_byte_data(MOTOR_DRIVER_ADDRESS,MOTOR_DRIVER_SPEED_A_L,(MOTOR_DRIVER_SPEED_SET_A & 0xff))
+	bus.write_byte_data(MOTOR_DRIVER_ADDRESS,MOTOR_DRIVER_ENABLE,0x10)
+
+if(MOTOR_DRIVER_SPEED_SET_A == 1300):
+	print("The speed is max")
+time.sleep(1)
+
+while(MOTOR_DRIVER_SPEED_SET_A > 0):
+	MOTOR_DRIVER_SPEED_SET_A -= 1
+	time.sleep(0.01)
+	bus.write_byte_data(MOTOR_DRIVER_ADDRESS,MOTOR_DRIVER_SPEED_A_H,(MOTOR_DRIVER_SPEED_SET_A >> 8))  
+	bus.write_byte_data(MOTOR_DRIVER_ADDRESS,MOTOR_DRIVER_SPEED_A_L,(MOTOR_DRIVER_SPEED_SET_A & 0xff))
+	bus.write_byte_data(MOTOR_DRIVER_ADDRESS,MOTOR_DRIVER_ENABLE,0x10)
+
+if(MOTOR_DRIVER_SPEED_SET_A == 0):
+	bus.write_byte_data(MOTOR_DRIVER_ADDRESS,MOTOR_DRIVER_SPEED_A_L,0)		
+	print("The speed is min")
