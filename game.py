@@ -3,20 +3,20 @@ import random
 import sys
 
 pygame.init()
-WIDTH = 1024 
-HEIGHT = 600 
+WIDTH = 1920
+HEIGHT = 1080 
 RED = (255,0,0)
-BLUE = (255,255,0)
+BLUE = (0,0,255)
 YELLOW = (255,255,0)
 player_size = 50
 player_pos = [WIDTH/2,HEIGHT-2*player_size]
-BACKGROUND_COLOR = (201,100,50)
-enemy_size = 50
+BACKGROUND_COLOR = (101,80,120)
+enemy_size = 70
 enemy_pos = [random.randint(0,WIDTH-enemy_size),0]
 enemy_list = [enemy_pos]
 SPEED = 10
 score = 0
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen = pygame.display.set_mode((WIDTH, HEIGHT),pygame.FULLSCREEN)
 game_over = False
 
 clock = pygame.time.Clock()
@@ -91,7 +91,7 @@ while not game_over:
     drop_enemies(enemy_list)
     score = update_enemy_positions(enemy_list, score)
     SPEED = set_level(score, SPEED)
-    text = "Score: " + str(score)
+    text = "your Score: " + str(score)
     label = myFont.render(text, 1,YELLOW)
     screen.blit(label,(WIDTH-200, HEIGHT-40))
 
