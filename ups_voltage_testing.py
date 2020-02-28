@@ -3,6 +3,7 @@
 from ina219 import INA219
 from ina219 import DeviceRangeError
 import time as t 
+import subprocess
 
 SHUNT_OHMS = 0.05
 ina = INA219(SHUNT_OHMS)
@@ -25,6 +26,7 @@ if __name__== "__main__":
     try:
         while True:
             read()
+            print(subprocess.getoutput('date +"%F %T.%s%::z" ; sudo hwclock'))
             t.sleep(5)
             print('-' * 40)
     except KeyboardInterrupt:
