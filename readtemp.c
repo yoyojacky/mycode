@@ -11,7 +11,7 @@ int main(void)
         file = fopen("/sys/class/thermal/thermal_zone0/temp", "r");
         if(file){
                 while(fscanf(file, "%s", str) !=EOF)
-                        printf("%.2f\n",strtod(str, NULL)/1000);
+                        printf("%.2fCeicus Degree\n",strtod(str, NULL)/1000);
                 fclose(file);
         }
         return 0;
