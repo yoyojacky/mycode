@@ -3,14 +3,14 @@ import random
 import sys
 
 pygame.init()
-WIDTH = 1920
-HEIGHT = 1080 
-RED = (255,0,0)
-BLUE = (0,0,255)
+WIDTH = 1024
+HEIGHT = 768 
+RED = (200,125,0)
+BLUE = (0,125,125)
 YELLOW = (255,255,0)
 player_size = 50
 player_pos = [WIDTH/2,HEIGHT-2*player_size]
-BACKGROUND_COLOR = (101,80,120)
+BACKGROUND_COLOR = (200,150,80)
 enemy_size = 70
 enemy_pos = [random.randint(0,WIDTH-enemy_size),0]
 enemy_list = [enemy_pos]

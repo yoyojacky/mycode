@@ -18,7 +18,7 @@ int main(void)
    	thermal = fopen("/sys/class/thermal/thermal_zone0/temp","r");
 	memset(buff, 0, sizeof(buff));
 	fread(buff, 5, 1, thermal);
-	printf("%s\n", buff); 
+      	printf("%s\n", buff);
    	fclose(thermal);
       if ( atoi(buff) > 50000 )
       {
