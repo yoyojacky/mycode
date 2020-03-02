@@ -4,7 +4,7 @@ import sys
 import time
 import liquidcrystal_i2c
 import commands
-lcd = liquidcrystal_i2c.LiquidCrystal_I2C(0x3f, 1, numlines=4)
+lcd = liquidcrystal_i2c.LiquidCrystal_I2C(0x27, 1, numlines=4)
 try:
     while True:
         pstr= 'HOST_NAME:'+ str(commands.getoutput('hostname'))
