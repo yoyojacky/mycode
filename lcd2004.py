@@ -10,7 +10,7 @@ import time
 import liquidcrystal_i2c
 efg = "0"
 wfg = "0"
-lcd = liquidcrystal_i2c.LiquidCrystal_I2C(0x3f, 1, numlines=4)
+lcd = liquidcrystal_i2c.LiquidCrystal_I2C(0x27, 1, numlines=4)
 PATH1="/sys/class/net/eth0/carrier"
 PATH2 = "/sys/class/net/wlan0/carrier"
 def getserial():
